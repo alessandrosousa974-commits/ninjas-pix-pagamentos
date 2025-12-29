@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Avaliações</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    select, textarea, button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h2>⭐ Avaliações</h2>
+
+  <section>
+    <h3>Colaborador → Empresa</h3>
+    <form id="formColaborador">
+      <label for="notaEmpresa">Nota (1 a 5):</label>
+      <select id="notaEmpresa" required>
+        <option value="">Escolher...</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+
+      <textarea id="comentarioEmpresa" placeholder="Comentário (opcional)"></textarea>
+      <button type="submit">Enviar avaliação</button>
+    </form>
+    <p id="msgColab"></p>
+  </section>
+
+  <section>
+    <h3>Empresa → Colaborador</h3>
+    <form id="formEmpresa">
+      <label for="notaColab">Nota (1 a 5):</label>
+      <select id="notaColab" required>
+        <option value="">Escolher...</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+
+      <textarea id="comentarioColab" placeholder="Comentário (opcional)"></textarea>
+      <button type="submit">Enviar avaliação</button>
+    </form>
+    <p id="msgEmp"></p>
+  </section>
+
+  <script>
+    document.getElementById("formColaborador").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nota = document.getElementById("notaEmpresa").value;
+      const comentario = document.getElementById("comentarioEmpresa").value;
+      console.log("Avaliação da empresa:", nota, comentario);
+      document.getElementById("msgColab").textContent = "✅ Avaliação da empresa enviada!";
+      this.reset();
+    });
+
+    document.getElementById("formEmpresa").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nota = document.getElementById("notaColab").value;
+      const comentario = document.getElementById("comentarioColab").value;
+      console.log("Avaliação do colaborador:", nota, comentario);
+      document.getElementById("msgEmp").textContent = "✅ Avaliação do colaborador enviada!";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
