@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Histórico de Pagamentos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>📜 Histórico de Pagamentos e Avaliações</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Empresa</th>
+        <th>Valor Recebido (R$)</th>
+        <th>Horário Entrada</th>
+        <th>Horário Saída</th>
+        <th>Avaliação (da Empresa)</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaHistorico">
+      <!-- Linhas geradas pelo JS -->
+    </tbody>
+  </table>
+
+  <script>
+    // Simulação de dados
+    const historico = [
+      {
+        data: "28/12/2025",
+        empresa: "Sushi Brasil",
+        valor: 212.50,
+        entrada: "08:00",
+        saida: "17:00",
+        avaliacao: "⭐⭐⭐⭐"
+      },
+      {
+        data: "29/12/2025",
+        empresa: "Temaki House",
+        valor: 110.00,
+        entrada: "18:00",
+        saida: "22:00",
+        avaliacao: "⭐⭐⭐"
+      }
+    ];
+
+    const tabela = document.getElementById("tabelaHistorico");
+    historico.forEach(item => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${item.data}</td>
+        <td>${item.empresa}</td>
+        <td>${item.valor.toFixed(2)}</td>
+        <td>${item.entrada}</td>
+        <td>${item.saida}</td>
+        <td>${item.avaliacao}</td>
+      `;
+      tabela.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
