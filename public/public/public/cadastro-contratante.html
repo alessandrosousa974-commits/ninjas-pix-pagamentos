@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Contratante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    input, button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cadastro de Contratante 🏢</h2>
+
+  <form id="formContratante">
+    <input type="text" id="empresa" placeholder="Nome da empresa ou pessoa" required>
+    <input type="text" id="cnpj" placeholder="CNPJ ou CPF" required>
+    <input type="text" id="endereco" placeholder="Endereço completo" required>
+    <input type="text" id="cidade" placeholder="Cidade" required>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    document.getElementById('formContratante').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const empresa = document.getElementById('empresa').value;
+      const cnpj = document.getElementById('cnpj').value;
+      const endereco = document.getElementById('endereco').value;
+      const cidade = document.getElementById('cidade').value;
+
+      console.log("Contratante cadastrado:", { empresa, cnpj, endereco, cidade });
+      document.getElementById('msg').textContent = "✅ Contratante cadastrado com sucesso!";
+      
+      this.reset();
+    });
+  </script>
+</body>
+</html>
