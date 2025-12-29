@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamento via PIX</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    input, button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 300px;
+    }
+    #valores {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>💸 Pagamento via PIX</h2>
+
+  <form id="formPagamento">
+    <input type="number" id="horas" placeholder="Horas trabalhadas" min="1" required>
+    <input type="number" id="gorjeta" placeholder="Gorjeta (opcional)" min="0">
+    <button type="submit">Calcular e Pagar</button>
+  </form>
+
+  <div id="valores" style="display:none;">
+    <p><strong>Valor bruto:</strong> R$ <span id="bruto"></span></p>
+    <p><strong>Taxa da plataforma (15%):</strong> R$ <span id="taxa"></span></p>
+    <p><strong>Valor líquido para o prestador:</strong> R$ <span id="liquido"></span></p>
+    <button onclick="confirmarPix()">✅ Confirmar PIX</button>
+  </div>
+
+  <p id="msg"></p>
+
+  <script>
+    const valorHora = 25;
+
+    document.getElementById("formPagamento").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const horas = parseFloat(document.getElementById("horas").value);
+      const gorjeta = parseFloat(document.getElementById("gorjeta").value || 0);
+      const bruto = horas * valorHora + gorjeta;
+      const taxa = bruto * 0.15;
+      const liquido = bruto - taxa;
+
+      document.getElementById("bruto").textContent = bruto.toFixed(2);
+      document.getElementById("taxa").textContent = taxa.toFixed(2);
+      document.getElementById("liquido").textContent = liquido.toFixed(2);
+
+      document.getElementById("valores").style.display = "block";
+    });
+
+    function confirmarPix() {
+      document.getElementById("msg").textContent = "✅ Pagamento via PIX confirmado!";
+    }
+  </script>
+</body>
+</html>
