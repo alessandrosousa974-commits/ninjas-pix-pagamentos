@@ -3,29 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>Login com Google</title>
+
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
-  <script src="../firebaseConfig.js"></script>
+  <script src="./firebaseConfig.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 16px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3367d6;
+    }
+  </style>
 </head>
 <body>
   <h2>Login com Google</h2>
   <button id="btnGoogle">Entrar com Gmail</button>
 
   <script>
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
     document.getElementById("btnGoogle").onclick = () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider)
+      auth.signInWithPopup(provider)
         .then(result => {
           const user = result.user;
-          localStorage.setItem("user", JSON.stringify(user));
+          alert(`Bem-vindo, ${user.displayName}`);
           window.location.href = "dashboard.html";
         })
         .catch(error => {
-          console.error("Erro no login:", error.message);
-          alert("Falha no login com Gmail");
+          alert("Erro no login: " + error.message);
         });
     };
   </script>
 </body>
 </html>
+Atualizar página de login
