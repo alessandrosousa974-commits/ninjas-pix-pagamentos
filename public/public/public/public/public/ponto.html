@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Bater Ponto</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #qr-reader {
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    #map {
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>📍 Bater Ponto com QR Code</h2>
+
+  <div id="qr-reader"></div>
+  <p><strong>Status:</strong> <span id="status">Aguardando leitura...</span></p>
+
+  <div id="map"></div>
+
+  <script>
+    let latitudeQR = -22.9035; // Exemplo do QR com local fixo (RJ)
+    let longitudeQR = -43.2096;
+
+    function registrarPonto(tipo) {
+      const agora = new Date().toLocaleString();
+      document.getElementById("status").textContent = `✅ ${tipo} registrada em ${agora}`;
+    }
+
+    function onScanSuccess(qrCodeMessage) {
+      if (qrCodeMessage === "ENTRADA") {
+        registrarPonto("Entrada");
+      } else if (qrCodeMessage === "SAIDA") {
+        registrarPonto("Saída");
+      } else {
+        document.getElementById("status").textContent = "❌ QR inválido";
+      }
+    }
+
+    const html5QrcodeScanner = new Html5QrcodeScanner(
+      "qr-reader", { fps: 10, qrbox: 250 }
+    );
+    html5QrcodeScanner.render(onScanSuccess);
+
+    function initMap() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          const latUser = pos.coords.latitude;
+          const lngUser = pos.coords.longitude;
+
+          const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: latUser, lng: lngUser },
+            zoom: 15,
+          });
+
+          new google.maps.Marker({ position: { lat: latUser, lng: lngUser }, map, label: "Você" });
+          new google.maps.Marker({ position: { lat: latitudeQR, lng: longitudeQR }, map, label: "Local QR" });
+
+        }, function() {
+          document.getElementById("map").textContent = "Erro ao obter localização.";
+        });
+      }
+    }
+  </script>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=SUA_API_KEY&callback=initMap">
+  </script>
+</body>
+</html>
