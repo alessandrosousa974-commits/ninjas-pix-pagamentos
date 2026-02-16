@@ -12,7 +12,8 @@ import {
   AlertCircle,
   DollarSign,
   Calendar,
-  FileText
+  FileText,
+  Headphones
 } from 'lucide-react'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 
@@ -328,6 +329,30 @@ export default function Welcome() {
           <Shield className="w-4 h-4" />
           <span>Plataforma segura com verificação biométrica e validação de documentos</span>
         </div>
+
+        {/* Link Suporte */}
+        <div className="text-center">
+          <Button
+            variant="link"
+            onClick={() => navigate('/suporte')}
+            className="text-muted-foreground hover:text-primary"
+          >
+            <Headphones className="w-4 h-4 mr-2" />
+            Precisa de ajuda? Acesse nosso Suporte
+          </Button>
+        </div>
+      </div>
+
+      {/* Botão Flutuante de Suporte */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          size="lg"
+          onClick={() => navigate('/suporte')}
+          className="rounded-full shadow-2xl hover:scale-110 transition-transform"
+        >
+          <Headphones className="w-5 h-5 mr-2" />
+          Suporte 24h
+        </Button>
       </div>
     </div>
   )

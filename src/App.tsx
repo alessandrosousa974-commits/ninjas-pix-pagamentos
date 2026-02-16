@@ -6,6 +6,7 @@ import Login from '@/pages/Login'
 import RegisterProfessional from '@/pages/RegisterProfessional'
 import RegisterCompany from '@/pages/RegisterCompany'
 import Dashboard from '@/pages/Dashboard'
+import Support from '@/pages/Support'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth()
@@ -20,6 +21,7 @@ export function App() {
         <Route path="/login/:type" element={<Login />} />
         <Route path="/cadastro/professional" element={<RegisterProfessional />} />
         <Route path="/cadastro/company" element={<RegisterCompany />} />
+        <Route path="/suporte" element={<Support />} />
         <Route
           path="/dashboard"
           element={
