@@ -1,17 +1,38 @@
-// Nota: O BrowserRouter está definido no main.tsx, então você pode usar Routes e Route diretamente aqui
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from '@/contexts/AuthContext'
+import { Toaster } from 'sonner'
+import Welcome from '@/pages/Welcome'
+import Login from '@/pages/Login'
+import RegisterProfessional from '@/pages/RegisterProfessional'
+import RegisterCompany from '@/pages/RegisterCompany'
+import Dashboard from '@/pages/Dashboard'
+
+function PrivateRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth()
+  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />
+}
 
 export function App() {
   return (
-    <div className="relative min-h-screen">
-      <div className="absolute top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-      <div className="flex items-center justify-center min-h-screen">
-        <h1 className="text-4xl font-bold">lasy</h1>
-      </div>
-    </div>
-  );
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/login/:type" element={<Login />} />
+        <Route path="/cadastro/professional" element={<RegisterProfessional />} />
+        <Route path="/cadastro/company" element={<RegisterCompany />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      <Toaster position="top-right" richColors />
+    </AuthProvider>
+  )
 }
 
-export default App;
+export default App
