@@ -19,8 +19,10 @@ import {
   LogOut,
   TrendingUp,
   Users,
-  Calendar
+  Calendar,
+  MessageSquare
 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { Professional, Job, CATEGORY_LABELS } from '@/types'
 
 export default function Dashboard() {
@@ -191,6 +193,7 @@ export default function Dashboard() {
 
 function DashboardProfessional({ user, jobs }: { user: Professional; jobs: Job[] }) {
   const { logout } = useAuth()
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen bg-background">
@@ -223,6 +226,41 @@ function DashboardProfessional({ user, jobs }: { user: Professional; jobs: Job[]
       </header>
 
       <div className="container mx-auto px-4 py-6 space-y-6">
+        {/* Community Access */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate('/community')}>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg">Comunidade</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Veja fotos de pratos incríveis da nossa comunidade
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate('/chat')}>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MessageSquare className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg">Chat da Comunidade</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Converse sobre receitas e técnicas culinárias
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
@@ -373,6 +411,7 @@ function DashboardProfessional({ user, jobs }: { user: Professional; jobs: Job[]
 
 function DashboardCompany({ professionals }: { professionals: Professional[] }) {
   const { logout } = useAuth()
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
 
@@ -417,6 +456,41 @@ function DashboardCompany({ professionals }: { professionals: Professional[] }) 
       </header>
 
       <div className="container mx-auto px-4 py-6 space-y-6">
+        {/* Community Access */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate('/community')}>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg">Comunidade</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Veja fotos de pratos incríveis da nossa comunidade
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate('/chat')}>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MessageSquare className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-lg">Chat da Comunidade</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Converse sobre receitas e técnicas culinárias
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Busca e Filtros */}
         <Card>
           <CardContent className="p-6">

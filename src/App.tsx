@@ -10,6 +10,8 @@ import Dashboard from '@/pages/Dashboard'
 import Support from '@/pages/Support'
 import Payments from '@/pages/Payments'
 import PermissionsPage from '@/pages/PermissionsPage'
+import Community from '@/pages/Community'
+import Chat from '@/pages/Chat'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth()
@@ -33,6 +35,22 @@ export function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <PrivateRoute>
+              <Community />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <PrivateRoute>
+              <Chat />
             </PrivateRoute>
           }
         />
