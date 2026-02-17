@@ -1,11 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>Lasy App</title>
-   
+
+    <!-- Meta tags de permissões -->
+    <meta name="description" content="Aplicação criada com Lasy - Plataforma de desenvolvimento web" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- PWA e Mobile -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Lasy App" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Permissions Policy - Define quais recursos podem ser acessados -->
+    <meta http-equiv="Permissions-Policy" content="
+      camera=*,
+      microphone=*,
+      geolocation=*,
+      accelerometer=*,
+      gyroscope=*,
+      magnetometer=*,
+      payment=*,
+      usb=*,
+      clipboard-read=*,
+      clipboard-write=*
+    " />
+
+    <!-- Feature Policy (fallback para navegadores antigos) -->
+    <meta http-equiv="Feature-Policy" content="
+      camera 'self';
+      microphone 'self';
+      geolocation 'self';
+      accelerometer 'self';
+      gyroscope 'self';
+      magnetometer 'self';
+      payment 'self';
+      usb 'self'
+    " />
   </head>
   <body>
     <div id="root"></div>
