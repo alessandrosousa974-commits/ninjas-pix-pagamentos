@@ -114,7 +114,7 @@ export default function RegisterProfessional() {
         description: 'Aguarde a verificação dos seus documentos (até 24h)',
       })
 
-      navigate('/dashboard')
+      navigate('/onboarding', { state: { userType: 'freelancer' } })
     } catch (error) {
       toast.error('Erro ao criar conta')
     }

@@ -73,7 +73,7 @@ export default function RegisterCompany() {
         description: 'Aguarde a verificação do CNPJ (até 24h)',
       })
 
-      navigate('/dashboard')
+      navigate('/onboarding', { state: { userType: 'company' } })
     } catch (error) {
       toast.error('Erro ao criar conta')
     }
