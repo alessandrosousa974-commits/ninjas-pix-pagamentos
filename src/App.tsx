@@ -8,6 +8,7 @@ import RegisterCompany from '@/pages/RegisterCompany'
 import Onboarding from '@/pages/Onboarding'
 import Dashboard from '@/pages/Dashboard'
 import Support from '@/pages/Support'
+import Payments from '@/pages/Payments'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth()
@@ -24,6 +25,7 @@ export function App() {
         <Route path="/cadastro/company" element={<RegisterCompany />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/suporte" element={<Support />} />
+        <Route path="/pagamentos" element={<Payments />} />
         <Route
           path="/dashboard"
           element={
