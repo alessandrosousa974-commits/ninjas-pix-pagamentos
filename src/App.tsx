@@ -12,6 +12,7 @@ import Payments from '@/pages/Payments'
 import PermissionsPage from '@/pages/PermissionsPage'
 import Community from '@/pages/Community'
 import Chat from '@/pages/Chat'
+import E2EEDemo from '@/pages/E2EEDemo'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth()
@@ -54,6 +55,7 @@ export function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/e2ee" element={<E2EEDemo />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster position="top-right" richColors />
